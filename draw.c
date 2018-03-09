@@ -57,6 +57,36 @@ void add_curve( struct matrix *points,
                 double x2, double y2, 
                 double x3, double y3, 
                 double step, int type ) {
+                  struct matrix* x_coefs;
+                  struct matrix* y_coefs;
+                  if (type){ // 1 for bezier
+                    x_coefs = generate_curve_coefs(x0, x1, x2, x3, 1);
+                    y_coefs = generate_curve_coefs(y0, y1, y2, y3, 1);
+                  }
+                  else{ // 0 for hermite
+                    x_coefs = generate_curve_coefs(x0, x1, x2, x3, 0);
+                    y_coefs = generate_curve_coefs(y0, y1, y2, y3, 0);
+                  }
+
+                  double ax = x_coefs->m[0][0];
+                  double bx = x_coefs->m[1][0];
+                  double cx = x_coefs->m[2][0];
+                  double dx = x_coefs->m[3][0];
+
+                  double ay = y_coefs->m[0][0];
+                  double by = y_coefs->m[1][0];
+                  double cy = y_coefs->m[2][0];
+                  double dy = y_coefs->m[3][0];
+
+                  double i;
+                  double x = x0;
+                  double y = y0;
+
+                  for (i = step; i < 1 + step; i += step){
+                    add_edge(points, x, y, 0, ax * powf(i, 3) + bx * powf(i,2) + cx * i + dx, ay * powf(i, 3) + by * powf(i,2) + cy * i + dy, 0);
+                    x = ax*powf(i, 3) + bx*powf(i,2) + cx * i + dx;
+                    y = ay*powf(i, 3) + by*powf(i,2) + cy * i + dy;
+                  }
 }
 
 

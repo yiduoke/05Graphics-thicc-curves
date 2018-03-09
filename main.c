@@ -23,14 +23,14 @@ int main(int argc, char **argv) {
   edges = new_matrix(4, 4);
   transform = new_matrix(4, 4);
 
-  // if ( argc == 2 )
-  //   parse_file( argv[1], transform, edges, s );
-  // else
-  //   parse_file( "stdin", transform, edges, s );
+  if ( argc == 2 )
+    parse_file( argv[1], transform, edges, s );
+  else
+    parse_file( "stdin", transform, edges, s );
 
-  add_circle(edges, 250, 250, 0, 40, 0.005);
-  draw_lines(edges, s, c);
-  save_extension(s, "thicc.png");
+  // add_curve(edges, 0, 0, 100, 400, 400, 400, 500, 0, 0.005, 1);
+  // draw_lines(edges, s, c);
+  // save_extension(s, "thicc.png");
 
   free_matrix( edges );
   free_matrix( transform );
