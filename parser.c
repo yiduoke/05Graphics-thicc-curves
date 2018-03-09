@@ -79,9 +79,9 @@ void parse_file ( char * filename,
   char state[40];
 
   color c;
-  c.red = 0;
-  c.green = MAX_COLOR;
-  c.blue = MAX_COLOR;
+  c.red = 230;
+  c.green = 130;
+  c.blue = 50;
 
   strcpy(state, "nothing");
 
@@ -161,24 +161,24 @@ void parse_file ( char * filename,
         strcpy(state, "nothing");
       }
       else if(!strncmp(state, "circle", 6)){
-        
+
                 float cx, cy, cz, r;
                 sscanf( line, "%f %f %f %f", &cx, &cy, &cz, &r);
-                add_circle(edges, cx, cy, cz, r, 0.005);
+                add_circle(edges, cx, cy, cz, r, 0.002);
                 strcpy(state, "nothing");
       }
       else if(!strncmp(state, "hermite", 7)){
-        
+
                 float px0, py0, px1, py1, rx0, ry0, rx1, ry1;
                 sscanf( line, "%f %f %f %f %f %f %f %f", &px0, &py0, &px1, &py1, &rx0, &ry0, &rx1, &ry1);
-                add_curve(edges, px0, py0, px1, py1, rx0, ry0, rx1, ry1, 0.005, 0);
+                add_curve(edges, px0, py0, px1, py1, rx0, ry0, rx1, ry1, 0.002, 0);
                 strcpy(state, "nothing");
       }
       else if(!strncmp(state, "bezier", 6)){
-        
+
                 float px0, py0, px1, py1, rx0, ry0, rx1, ry1;
                 sscanf( line, "%f %f %f %f %f %f %f %f", &px0, &py0, &px1, &py1, &rx0, &ry0, &rx1, &ry1);
-                add_curve(edges, px0, py0, px1, py1, rx0, ry0, rx1, ry1, 0.005, 1);
+                add_curve(edges, px0, py0, px1, py1, rx0, ry0, rx1, ry1, 0.002, 1);
                 strcpy(state, "nothing");
       }
       else if(!strncmp(state, "rotate", 6)){

@@ -15,11 +15,6 @@ int main(int argc, char **argv) {
   struct matrix * edges;
   struct matrix * transform;
 
-  color c;
-  c.red = 230;
-  c.green = 130;
-  c.blue = 50;
-
   edges = new_matrix(4, 4);
   transform = new_matrix(4, 4);
 
@@ -28,10 +23,6 @@ int main(int argc, char **argv) {
   else
     parse_file( "stdin", transform, edges, s );
 
-  // add_curve(edges, 0, 0, 100, 400, 400, 400, 500, 0, 0.005, 1);
-  // draw_lines(edges, s, c);
-  // save_extension(s, "thicc.png");
-
   free_matrix( edges );
   free_matrix( transform );
-}  
+}
